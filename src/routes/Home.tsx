@@ -4,7 +4,7 @@ import { useState } from "react";
 function Home() {
   return (
     <>
-      <Text marginTop={20} className="mt-20">
+      <Text color={"black"} marginTop={20}>
         Click on the Vite and React logos to learn more
       </Text>
     </>
