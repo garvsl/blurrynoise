@@ -1,6 +1,15 @@
-import { Spacer, Box, Avatar } from "@chakra-ui/react";
+import {
+  Spacer,
+  Box,
+  Avatar,
+  IconButton,
+  Flex,
+  Heading,
+} from "@chakra-ui/react";
+import { RxHamburgerMenu } from "react-icons/rx";
+import AvatarFace from "./AvatarFace";
 
-export default function Header() {
+export default function Header({ name }: any) {
   return (
     <Box
       bg="white"
@@ -14,27 +23,20 @@ export default function Header() {
       display={"flex"}
       //   justifyContent={"space-between"}
     >
-      {/* <Flex alignItems={"center"}>
-          <Heading
-            fontWeight={"45px"}
-            letterSpacing={"-1px"}
-            color={"black"}
-            fontSize="xl"
-          >
-            Blurry
-          </Heading>
-          <Heading
-            fontWeight={"thick"}
-            letterSpacing={"-1px"}
-            color={"black"}
-            as={"s"}
-            fontSize="xl"
-          >
-            Noise
-          </Heading>
-        </Flex> */}
+      <IconButton size={"sm"} icon={<RxHamburgerMenu />} aria-label={""} />
       <Spacer />
-      <Avatar size={"sm"} bg="gray.500" />
+      <Flex alignItems={"center"}>
+        <Heading
+          fontWeight={"45px"}
+          letterSpacing={"-1px"}
+          color={"black"}
+          fontSize="xl"
+        >
+          {name}
+        </Heading>
+      </Flex>
+      <Spacer />
+      <AvatarFace />
     </Box>
   );
 }

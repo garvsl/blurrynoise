@@ -18,12 +18,13 @@ function Project() {
   console.log(project);
   return (
     <>
-      <Header />
       {!loading && project.length > 0 && (
-        <Text color={"black"} marginTop={20}>
-          {project[0]?.name}
-          Welcome
-        </Text>
+        <>
+          <Header name={project[0]?.name} />
+          <Text color={"black"} marginTop={20}>
+            Welcome
+          </Text>
+        </>
       )}
     </>
   );
