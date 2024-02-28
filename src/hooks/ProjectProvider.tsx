@@ -2,7 +2,7 @@ import { useContext, createContext, useState, useEffect } from "react";
 
 const ProjectContext = createContext<any>(null);
 
-export const useAuth = () => useContext(ProjectContext);
+export const useProject = () => useContext(ProjectContext);
 
 export default function ProjectProvider({ children }: any) {
   const [projects, setProjects] = useState<any>([
