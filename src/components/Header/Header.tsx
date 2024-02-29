@@ -33,7 +33,7 @@ export default function Header({ name }: any) {
         variant={"ghost"}
         {...getButtonProps()}
         size={"sm"}
-        icon={isOpen ? <RxPinLeft /> : <RxHamburgerMenu />}
+        icon={!isOpen ? <RxPinLeft /> : <RxHamburgerMenu />}
         aria-label={""}
       />
 
