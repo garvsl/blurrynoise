@@ -30,10 +30,10 @@ export default function Header({ name }: any) {
       display={"flex"}
     >
       <IconButton
-        variant={"ghost"}
+        variant={isOpen ? "outline" : "ghost"}
         {...getButtonProps()}
         size={"sm"}
-        icon={!isOpen ? <RxPinLeft /> : <RxHamburgerMenu />}
+        icon={<RxHamburgerMenu />}
         aria-label={""}
       />
 
