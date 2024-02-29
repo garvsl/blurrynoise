@@ -47,6 +47,7 @@ export default function FileDrawer() {
           </Heading>
           <Spacer />
           <IconButton
+            variant={"outline"}
             zIndex={"99"}
             size={"sm"}
             icon={<RxUpload />}

@@ -9,13 +9,14 @@ import {
   Collapse,
 } from "@chakra-ui/react";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { RxPinLeft } from "react-icons/rx";
 import AvatarFace from "./AvatarFace";
 import ProjectName from "./ProjectName";
 import FileDrawer from "../Project/FileDrawer";
 import { useProject } from "../../hooks/ProjectProvider";
 
 export default function Header({ name }: any) {
-  const { getButtonProps } = useProject();
+  const { getButtonProps, isOpen } = useProject();
   return (
     <Box
       bg="white"
@@ -29,9 +30,10 @@ export default function Header({ name }: any) {
       display={"flex"}
     >
       <IconButton
+        variant={"ghost"}
         {...getButtonProps()}
         size={"sm"}
-        icon={<RxHamburgerMenu />}
+        icon={isOpen ? <RxPinLeft /> : <RxHamburgerMenu />}
         aria-label={""}
       />
 
