@@ -14,7 +14,7 @@ export default function ProjectProvider({ children }: any) {
     },
   ]);
   const { getButtonProps, getDisclosureProps, isOpen } = useDisclosure();
-  const [hidden, setHidden] = useState(!isOpen);
+  const [hidden, setHidden] = useState(isOpen);
 
   return (
     <ProjectContext.Provider

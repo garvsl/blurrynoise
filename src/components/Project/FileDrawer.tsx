@@ -4,6 +4,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { RxUpload } from "react-icons/rx";
 import { useProject } from "../../hooks/ProjectProvider";
 import File from "./File";
+import { useEffect } from "react";
 
 export default function FileDrawer() {
   const { getDisclosureProps, setHidden, hidden, isOpen } = useProject();
@@ -14,8 +15,8 @@ export default function FileDrawer() {
       hidden={hidden}
       initial={false}
       onAnimationStart={() => setHidden(false)}
-      onAnimationComplete={() => setHidden(!isOpen)}
-      animate={{ width: isOpen ? 300 : 0, opacity: isOpen ? 1 : 0.3 }}
+      onAnimationComplete={() => setHidden(isOpen)}
+      animate={{ width: !isOpen ? 300 : 0, opacity: !isOpen ? 1 : 0.3 }}
       transition={{
         type: "spring",
         stiffness: 260,
