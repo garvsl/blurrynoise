@@ -15,7 +15,7 @@ import { BiCheck, BiX, BiEdit } from "react-icons/bi";
 export default function ProjectName({ projectName }: any) {
   return (
     <Editable defaultValue={projectName}>
-      <Tooltip label="Click to edit" shouldWrapChildren={true}>
+      <Tooltip label="Edit" shouldWrapChildren={true}>
         <EditablePreview
           py={2}
           px={4}

@@ -15,7 +15,14 @@ export default function FileDrawer() {
       initial={false}
       onAnimationStart={() => setHidden(false)}
       onAnimationComplete={() => setHidden(!isOpen)}
-      animate={{ width: isOpen ? 300 : 0 }}
+      animate={{ width: isOpen ? 300 : 0, opacity: isOpen ? 1 : 0.25 }}
+      transition={{
+        // duration: 0.8,
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
+        ease: [0, 0.71, 0.2, 1.01],
+      }}
       style={{
         borderWidth: "1px",
         borderTop: "1px solid white",
@@ -28,9 +35,16 @@ export default function FileDrawer() {
         top: "0",
       }}
     >
-      <Flex direction="column" gap={"8px"} paddingX={"8px"} paddingTop={"16px"}>
-        <Flex marginBottom={"16px"} alignItems={"center"}>
-          <Heading size={"md"}>Files</Heading>
+      <Flex
+        direction="column"
+        gap={"8px"}
+        paddingX={"10px"}
+        paddingTop={"12px"}
+      >
+        <Flex marginBottom={"18px"} alignItems={"flex-end"}>
+          <Heading letterSpacing={"-0.5px"} size={"md"}>
+            Files
+          </Heading>
           <Spacer />
           <IconButton
             zIndex={"99"}
@@ -39,9 +53,13 @@ export default function FileDrawer() {
             aria-label={""}
           />
         </Flex>
-        <File title={"The Voice"} length={"3:00"} />
-        <File title={"The Voice"} length={"3:00"} />
-        <File title={"The Voice"} length={"3:00"} />
+        <File
+          title={"The Voice of the best ever in the world, okas"}
+          length={"3:00"}
+          color={"blue"}
+        />
+        <File title={"The Voice"} length={"3:00"} color={"red"} />
+        <File title={"The Voice"} length={"3:00"} color={"orange"} />
       </Flex>
     </motion.div>
   );

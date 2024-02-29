@@ -7,14 +7,28 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-export default function File({ title, length }: any) {
+export default function File({ title, length, color }: any) {
   return (
-    <Card bg={"blue.200"} size={"sm"}>
+    <Card bg={`${color}.200`} size={"sm"}>
       <CardHeader>
-        <Flex>
-          <Text fontWeight={"medium"}>{title}</Text>
+        <Flex alignItems={"flex-end"}>
+          <Text
+            fontSize={"14px"}
+            letterSpacing={"-0.5px"}
+            isTruncated={true}
+            fontWeight={"500px"}
+          >
+            {title}
+          </Text>
           <Spacer />
-          <Text color={"white"}>{length}</Text>
+          <Text
+            paddingLeft={"10px"}
+            fontSize={"14px"}
+            letterSpacing={"-0.5px"}
+            color={"white"}
+          >
+            {length}
+          </Text>
         </Flex>
       </CardHeader>
     </Card>
