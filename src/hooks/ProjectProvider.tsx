@@ -1,3 +1,4 @@
+import { useDisclosure } from "@chakra-ui/react";
 import { useContext, createContext, useState, useEffect } from "react";
 
 const ProjectContext = createContext<any>(null);
@@ -12,12 +13,19 @@ export default function ProjectProvider({ children }: any) {
       files: ["null"],
     },
   ]);
+  const { getButtonProps, getDisclosureProps, isOpen } = useDisclosure();
+  const [hidden, setHidden] = useState(!isOpen);
 
   return (
     <ProjectContext.Provider
       value={{
         projects,
         setProjects,
+        isOpen,
+        getButtonProps,
+        getDisclosureProps,
+        hidden,
+        setHidden,
       }}
     >
       {children}
