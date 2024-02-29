@@ -15,13 +15,13 @@ export default function FileDrawer() {
       initial={false}
       onAnimationStart={() => setHidden(false)}
       onAnimationComplete={() => setHidden(!isOpen)}
-      animate={{ width: isOpen ? 300 : 0, opacity: isOpen ? 1 : 0.25 }}
+      animate={{ width: isOpen ? 300 : 0, opacity: isOpen ? 1 : 0.3 }}
       transition={{
-        // duration: 0.8,
         type: "spring",
         stiffness: 260,
         damping: 20,
         ease: [0, 0.71, 0.2, 1.01],
+        duration: 2,
       }}
       style={{
         borderWidth: "1px",
