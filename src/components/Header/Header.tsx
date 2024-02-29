@@ -8,6 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import AvatarFace from "./AvatarFace";
+import ProjectName from "./ProjectName";
 
 export default function Header({ name }: any) {
   return (
@@ -32,7 +33,7 @@ export default function Header({ name }: any) {
           color={"black"}
           fontSize="xl"
         >
-          {name}
+          <ProjectName projectName={name} />
         </Heading>
       </Flex>
       <Spacer />
