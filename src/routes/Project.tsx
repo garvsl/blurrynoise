@@ -31,16 +31,11 @@ function Project() {
   return (
     <>
       {!loading && project.length > 0 && (
-        <Flex height={"100vh"} overflow={"hidden"} direction="column">
+        <Flex h={"100vh"} direction="column">
           <Header name={project[0]?.name} />
-          <Flex overflow={"hidden"}>
+          <Flex flex={1}>
             <FileDrawer />
-            <Flex
-              overflow={"hidden"}
-              flexDirection={"column"}
-              h="100vh"
-              w={"100vw"}
-            >
+            <Flex overflow={"hidden"} flexDirection={"column"} w={"100%"}>
               <SongScreen />
               <Player />
             </Flex>

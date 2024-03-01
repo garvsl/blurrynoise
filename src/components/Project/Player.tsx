@@ -5,8 +5,6 @@ export default function Player() {
   return (
     <Flex
       justifyContent={"center"}
-      marginTop={"auto"}
-      h={"110px"}
       paddingX={"12px"}
       zIndex={"99"}
       bg={"white"}

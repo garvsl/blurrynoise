@@ -13,6 +13,7 @@ export default function File({ title, length, color }: any) {
       <CardHeader>
         <Flex alignItems={"flex-end"}>
           <Text
+            color={"white"}
             fontSize={"14px"}
             letterSpacing={"-0.5px"}
             isTruncated={true}
@@ -25,7 +26,7 @@ export default function File({ title, length, color }: any) {
             paddingLeft={"10px"}
             fontSize={"14px"}
             letterSpacing={"-0.5px"}
-            color={"white"}
+            color={"gray.200"}
           >
             {length}
           </Text>

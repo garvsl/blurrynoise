@@ -32,7 +32,6 @@ export default function FileDrawer() {
         whiteSpace: "nowrap",
         position: "relative",
         left: "0",
-        height: "100vh",
         top: "0",
       }}
     >
