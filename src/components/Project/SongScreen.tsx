@@ -4,9 +4,10 @@ const Song = () => {
   return (
     <GridItem>
       <Card
+        bg={"gray.100"}
         // bg={"gray.100"}
-        shadow={"xs"}
-        // variant={""}
+        // shadow={"xs"}
+        variant={"outline"}
         padding={"16px"}
         h={"100%"}
         size={"md"}
@@ -20,8 +21,11 @@ export default function SongScreen() {
   return (
     <Grid
       h={"100%"}
+      borderWidth={"1px"}
+      borderRadius={"md"}
+      borderRightRadius={"0px"}
       templateRows="repeat(8, 3fr)"
-      padding={"4px"}
+      padding={"7px"}
       flexDirection={"column"}
       gap={"5px"}
     >

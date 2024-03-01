@@ -4,10 +4,6 @@ import { FaBackward, FaForward, FaPlay } from "react-icons/fa";
 export default function Player() {
   return (
     <Flex
-      borderLeft={"none"}
-      borderRight={"none"}
-      borderBottom={"none"}
-      borderWidth={"1px"}
       justifyContent={"center"}
       marginTop={"auto"}
       h={"110px"}

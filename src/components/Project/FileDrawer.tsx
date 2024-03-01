@@ -25,8 +25,8 @@ export default function FileDrawer() {
         duration: 2,
       }}
       style={{
-        borderWidth: "1px",
-        borderTop: "1px solid white",
+        // borderWidth: "1px",
+        // borderTop: "1px solid white",
         marginTop: "-1px",
         overflow: "hidden",
         whiteSpace: "nowrap",

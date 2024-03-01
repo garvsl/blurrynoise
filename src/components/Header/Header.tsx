@@ -20,7 +20,7 @@ export default function Header({ name }: any) {
   return (
     <Box
       bg="white"
-      borderWidth="1px"
+      // borderWidth="1px"
       // borderRadius="md"
       w="100%"
       p={2}
