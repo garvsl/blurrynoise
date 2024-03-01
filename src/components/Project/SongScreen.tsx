@@ -1,5 +1,6 @@
 import { Card, Flex, Grid, GridItem } from "@chakra-ui/react";
 import { useProject } from "../../hooks/ProjectProvider";
+import Marker from "./Marker";
 
 const Song = () => {
   return (
@@ -22,6 +23,7 @@ export default function SongScreen() {
   const { isOpen } = useProject();
   return (
     <Grid
+      overflow={"hidden"}
       h={"100%"}
       borderWidth={"1px"}
       borderRadius={isOpen ? "0px" : "md"}
@@ -30,9 +32,11 @@ export default function SongScreen() {
       borderRightRadius={"0px"}
       templateRows="repeat(8, 3fr)"
       padding={"7px"}
+      paddingTop={"18px"}
       flexDirection={"column"}
       gap={"5px"}
     >
+      <Marker />
       <Song />
       <Song />
       <Song />
