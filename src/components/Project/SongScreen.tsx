@@ -1,10 +1,11 @@
 import { Card, Flex, Grid, GridItem } from "@chakra-ui/react";
+import { useProject } from "../../hooks/ProjectProvider";
 
 const Song = () => {
   return (
     <GridItem>
       <Card
-        bg={"gray.100"}
+        bg={"blackAlpha.100"}
         // bg={"gray.100"}
         // shadow={"xs"}
         variant={"outline"}
@@ -18,11 +19,14 @@ const Song = () => {
 };
 
 export default function SongScreen() {
+  const { isOpen } = useProject();
   return (
     <Grid
       h={"100%"}
       borderWidth={"1px"}
-      borderRadius={"md"}
+      borderRadius={isOpen ? "0px" : "md"}
+      borderLeft={isOpen && "0px"}
+      borderRight={isOpen && "0px"}
       borderRightRadius={"0px"}
       templateRows="repeat(8, 3fr)"
       padding={"7px"}
