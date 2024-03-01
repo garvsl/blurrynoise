@@ -1,10 +1,21 @@
-import { Box, Collapse, Flex, Slide, SlideFade, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Card,
+  CardBody,
+  Collapse,
+  Flex,
+  Slide,
+  SlideFade,
+  Text,
+} from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../components/Header/Header";
 import { useProject } from "../hooks/ProjectProvider";
 import { motion } from "framer-motion";
 import FileDrawer from "../components/Project/FileDrawer";
+import Player from "../components/Project/Player";
+import SongScreen from "../components/Project/SongScreen";
 
 function Project() {
   const { id } = useParams();
@@ -24,7 +35,10 @@ function Project() {
           <Header name={project[0]?.name} />
           <Flex>
             <FileDrawer />
-            {/* <Text color={"black"}>Welcome</Text> */}
+            <Flex flexDirection={"column"} h="100vh" w={"100vw"}>
+              <SongScreen />
+              <Player />
+            </Flex>
           </Flex>
         </Flex>
       )}

@@ -36,14 +36,9 @@ export default function FileDrawer() {
         top: "0",
       }}
     >
-      <Flex
-        direction="column"
-        gap={"8px"}
-        paddingX={"10px"}
-        paddingTop={"12px"}
-      >
+      <Flex direction="column" gap={"8px"} paddingX={"16px"} paddingTop={"4px"}>
         <Flex marginBottom={"18px"} alignItems={"flex-end"}>
-          <Heading letterSpacing={"-0.5px"} size={"md"}>
+          <Heading fontWeight={"medium"} letterSpacing={"-0.5px"} size={"md"}>
             Files
           </Heading>
           <Spacer />

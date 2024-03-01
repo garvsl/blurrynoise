@@ -9,7 +9,7 @@ import {
 
 export default function File({ title, length, color }: any) {
   return (
-    <Card bg={`${color}.200`} size={"sm"}>
+    <Card bg={`${color}.300`} size={"sm"}>
       <CardHeader>
         <Flex alignItems={"flex-end"}>
           <Text
