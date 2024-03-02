@@ -15,6 +15,7 @@ export default function ProjectProvider({ children }: any) {
   ]);
   const { getButtonProps, getDisclosureProps, isOpen } = useDisclosure();
   const [hidden, setHidden] = useState(isOpen);
+  const [changed, setChanged] = useState(false);
 
   return (
     <ProjectContext.Provider
@@ -26,6 +27,8 @@ export default function ProjectProvider({ children }: any) {
         getDisclosureProps,
         hidden,
         setHidden,
+        changed,
+        setChanged,
       }}
     >
       {children}

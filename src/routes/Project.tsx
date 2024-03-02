@@ -35,7 +35,7 @@ function Project() {
           <Header name={project[0]?.name} />
           <Flex flex={1}>
             <FileDrawer />
-            <Flex overflow={"hidden"} flexDirection={"column"} w={"100%"}>
+            <Flex flexDirection={"column"} w={"100%"}>
               <SongScreen />
               <Player />
             </Flex>

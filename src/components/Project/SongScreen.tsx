@@ -1,28 +1,24 @@
 import { Card, Flex, Grid, GridItem } from "@chakra-ui/react";
 import { useProject } from "../../hooks/ProjectProvider";
 import Marker from "./Marker";
-import { useRef } from "react";
+import { createRef, useLayoutEffect, useRef } from "react";
 
 const Song = () => {
   return (
-    // <GridItem>
     <Card
       bg={"blackAlpha.100"}
-      // bg={"gray.100"}
-      // shadow={"xs"}
       variant={"outline"}
       padding={"16px"}
-      // h={"100%"}
       size={"md"}
-      // w={"100%"}
     ></Card>
-    // </GridItem>
   );
 };
 
 export default function SongScreen() {
-  const { isOpen } = useProject();
+  const { isOpen, changed } = useProject();
   let gridRef: any = useRef();
+  let gridClient = gridRef?.current?.getBoundingClientRect();
+
   return (
     <Grid
       flexGrow={1}
@@ -32,13 +28,15 @@ export default function SongScreen() {
       borderLeft={isOpen && "0px"}
       borderRight={isOpen && "0px"}
       borderRightRadius={"0px"}
-      // templateRows="repeat(8, 3fr)"
       padding={"7px"}
       paddingTop={"18px"}
       flexDirection={"column"}
       gap={"5px"}
+      // bg={"red"}
+      position={"relative"}
+      overflow={"hidden"}
     >
-      <Marker gridRef={gridRef} />
+      <Marker gridRef={gridRef} gridClient={gridClient} isChanged={changed} />
       <Song />
       <Song />
       <Song />

@@ -7,7 +7,8 @@ import File from "./File";
 import { useEffect } from "react";
 
 export default function FileDrawer() {
-  const { getDisclosureProps, setHidden, hidden, isOpen } = useProject();
+  const { getDisclosureProps, setHidden, hidden, isOpen, setChanged, changed } =
+    useProject();
 
   return (
     <motion.div
@@ -15,12 +16,15 @@ export default function FileDrawer() {
       hidden={hidden}
       initial={false}
       onAnimationStart={() => setHidden(false)}
-      onAnimationComplete={() => setHidden(isOpen)}
+      onAnimationComplete={() => {
+        setHidden(isOpen);
+        setChanged(!changed);
+      }}
       animate={{ width: !isOpen ? 300 : 0, opacity: !isOpen ? 1 : 0.3 }}
       transition={{
         type: "spring",
         stiffness: 260,
-        damping: 20,
+        damping: 30,
         ease: [0, 0.71, 0.2, 1.01],
         duration: 2,
       }}
