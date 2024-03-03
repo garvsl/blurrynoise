@@ -1,14 +1,31 @@
-import { IconButton, Flex, Heading, Spacer } from "@chakra-ui/react";
+import { IconButton, Flex, Heading, Spacer, Input } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RxUpload } from "react-icons/rx";
 import { useProject } from "../../hooks/ProjectProvider";
 import File from "./File";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
-export default function FileDrawer() {
-  const { getDisclosureProps, setHidden, hidden, isOpen, setChanged, changed } =
-    useProject();
+export default function FileDrawer({ files, setFiles }: any) {
+  const {
+    getDisclosureProps,
+    setProjects,
+    projects,
+    setHidden,
+    hidden,
+    isOpen,
+    setChanged,
+    changed,
+  } = useProject();
+
+  const inputRef: any = useRef(null);
+
+  const handleUpload = (e: any) => {
+    if (e) {
+      console.log("file", e[0]);
+      setFiles([...files, e[0]]);
+    }
+  };
 
   return (
     <motion.div
@@ -45,21 +62,44 @@ export default function FileDrawer() {
             Files
           </Heading>
           <Spacer />
+
           <IconButton
             variant={"outline"}
             zIndex={"99"}
             size={"sm"}
+            onClick={() => inputRef.current.click()}
             icon={<RxUpload />}
             aria-label={""}
           />
+          <Input
+            accept="audio/*"
+            multiple={false}
+            display={"none"}
+            onChange={(e) => handleUpload(e.target.files)}
+            ref={inputRef}
+            size={"sm"}
+            variant={"unstyled"}
+            type="file"
+          />
         </Flex>
-        <File
+        {files.map((file: any, index: any) => {
+          return (
+            <File
+              key={index}
+              title={file.name}
+              length={"3:00"}
+              color={"blue"}
+              audio={file}
+            />
+          );
+        })}
+        {/* <File
           title={"The Voice of the best ever in the world, okas"}
           length={"3:00"}
           color={"blue"}
         />
         <File title={"The Voice"} length={"3:00"} color={"red"} />
-        <File title={"The Voice"} length={"3:00"} color={"orange"} />
+        <File title={"The Voice"} length={"3:00"} color={"orange"} /> */}
       </Flex>
     </motion.div>
   );

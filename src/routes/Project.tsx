@@ -21,12 +21,26 @@ function Project() {
   const { id } = useParams();
   const [project, setProject] = useState<any>({});
   const [loading, setLoading] = useState(true);
-  const { projects } = useProject();
+  const { projects, setProjects, files, setFiles } = useProject();
 
   useEffect(() => {
-    setProject(projects.filter((proj: any) => proj.id == Number(id)));
+    const proj = projects.filter((proj: any) => proj.id == Number(id));
+    setProject(proj);
+    setFiles(proj[0].files ? proj[0].files : []);
     setLoading(false);
   }, []);
+
+  useEffect(() => {
+    if (project && project.length > 0) {
+      let array = projects.filter((e: any) => e.id != Number(id));
+      array.push({
+        id: Number(id),
+        name: project[0]?.name,
+        files: files ? files : [],
+      });
+      setProjects(array);
+    }
+  }, [files]);
 
   return (
     <>
@@ -34,9 +48,9 @@ function Project() {
         <Flex h={"100vh"} direction="column">
           <Header name={project[0]?.name} />
           <Flex flex={1}>
-            <FileDrawer />
+            <FileDrawer files={files} setFiles={setFiles} />
             <Flex flexDirection={"column"} w={"100%"}>
-              <SongScreen />
+              <SongScreen files={files} setFiles={setFiles} />
               <Player />
             </Flex>
           </Flex>

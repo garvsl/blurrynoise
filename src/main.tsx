@@ -12,17 +12,6 @@ import Project from "./routes/Project.tsx";
 import RootLayout from "./RootLayout.tsx";
 import ProjectProvider from "./hooks/ProjectProvider.tsx";
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route
-    // element={<RootLayout />}
-    >
-      <Route index path="/" element={<Home />} />
-      <Route path="/project/:id" element={<Project />} />
-    </Route>
-  )
-);
-
 const activeLabelStyles = {
   transform: "scale(0.85) translateY(-24px)",
 };
@@ -86,12 +75,29 @@ export const theme = extendTheme({
   },
 });
 
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route
+    // element={<RootLayout />}
+    >
+      <Route index path="/" element={<Home />} />
+
+      <Route
+        path="/project/:id"
+        element={
+          <ProjectProvider>
+            <Project />
+          </ProjectProvider>
+        }
+      />
+    </Route>
+  )
+);
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
-      <ProjectProvider>
-        <RouterProvider router={router} />
-      </ProjectProvider>
+      <RouterProvider router={router} />
     </ChakraProvider>
   </React.StrictMode>
 );
