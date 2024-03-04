@@ -1,7 +1,9 @@
 import { Box, Flex, IconButton } from "@chakra-ui/react";
-import { FaBackward, FaForward, FaPlay } from "react-icons/fa";
+import { FaBackward, FaForward, FaPause, FaPlay } from "react-icons/fa";
+import { useProject } from "../../hooks/ProjectProvider";
 
 export default function Player() {
+  const { setPlaying, playing } = useProject();
   return (
     <Flex
       justifyContent={"center"}
@@ -21,7 +23,10 @@ export default function Player() {
         <IconButton
           variant={"outline"}
           size={"sm"}
-          icon={<FaPlay />}
+          onClick={() => {
+            setPlaying(!playing);
+          }}
+          icon={playing ? <FaPause /> : <FaPlay />}
           aria-label={""}
         />
         <IconButton
