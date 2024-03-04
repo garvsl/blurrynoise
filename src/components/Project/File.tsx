@@ -18,7 +18,8 @@ export default function File({ color, audio }: any) {
 
   const cardRef: any = useRef();
 
-  const [duration, setDuration] = useState<any>();
+  const [duration, setDuration] = useState<any>("0:00");
+  const [currentTime, setCurrentTime] = useState<any>("0:00");
   const [playing, setPlaying] = useState(false);
 
   return (
@@ -27,6 +28,7 @@ export default function File({ color, audio }: any) {
         audio={audio}
         setLoading={setLoading}
         setDuration={setDuration}
+        setCurrentTime={setCurrentTime}
         cardRef={cardRef}
         height={15}
       >
@@ -63,7 +65,7 @@ export default function File({ color, audio }: any) {
                 letterSpacing={"-0.5px"}
                 color={"gray.200"}
               >
-                {duration}
+                {`${currentTime} / ${duration}`}
               </Text>
             </Flex>
           </CardHeader>
