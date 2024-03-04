@@ -12,6 +12,17 @@ export default function FileDrawer({ files, setFiles }: any) {
 
   const inputRef: any = useRef(null);
 
+  const color = [
+    "orange",
+    "blue",
+    "red",
+    "green",
+    "purple",
+    "pink",
+    "cyan",
+    "teal",
+  ];
+
   const handleUpload = (e: any) => {
     if (files.length >= 8) {
       return;
@@ -24,22 +35,14 @@ export default function FileDrawer({ files, setFiles }: any) {
       reader.onload = function (evt: any) {
         //Need to make a blob so the audio file is recognized by waveSurfer
         let blob = new window.Blob([new Uint8Array(evt.target.result)]);
-        setFiles([...files, { name: e[0].name, blob: blob }]);
+        setFiles([
+          ...files,
+          { name: e[0].name, blob: blob, color: color[files.length] },
+        ]);
       };
       reader.readAsArrayBuffer(e[0]);
     }
   };
-
-  const color = [
-    "orange",
-    "blue",
-    "red",
-    "green",
-    "purple",
-    "pink",
-    "cyan",
-    "teal",
-  ];
 
   return (
     <motion.div
@@ -97,7 +100,7 @@ export default function FileDrawer({ files, setFiles }: any) {
           />
         </Flex>
         {files.map((file: any, index: any) => {
-          return <File key={index} color={color[index]} audio={file} />;
+          return <File key={index} audio={file} />;
         })}
         {/* <File
           title={"The Voice of the best ever in the world, okas"}

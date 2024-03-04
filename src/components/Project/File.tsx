@@ -13,7 +13,7 @@ import { FaPause, FaPlay } from "react-icons/fa";
 import WaveSurfer from "wavesurfer.js";
 import Wave from "./Wave";
 
-export default function File({ color, audio }: any) {
+export default function File({ audio }: any) {
   const [loading, setLoading] = useState(true);
 
   const cardRef: any = useRef();
@@ -42,7 +42,7 @@ export default function File({ color, audio }: any) {
           padding={"5px"}
           display={!loading ? "block" : "none"}
           ref={cardRef}
-          bg={`${color}.300`}
+          bg={`${audio.color}.300`}
           size={"sm"}
         >
           <CardHeader>
