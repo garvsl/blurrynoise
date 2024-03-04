@@ -88,7 +88,7 @@ export default function FileDrawer({ files, setFiles }: any) {
               key={index}
               title={file.name}
               length={"3:00"}
-              color={"blue"}
+              color={"orange"}
               audio={file}
             />
           );
