@@ -7,20 +7,16 @@ import File from "./File";
 import { useEffect, useRef } from "react";
 
 export default function FileDrawer({ files, setFiles }: any) {
-  const {
-    getDisclosureProps,
-    setProjects,
-    projects,
-    setHidden,
-    hidden,
-    isOpen,
-    setChanged,
-    changed,
-  } = useProject();
+  const { getDisclosureProps, setHidden, hidden, isOpen, setChanged, changed } =
+    useProject();
 
   const inputRef: any = useRef(null);
 
   const handleUpload = (e: any) => {
+    if (files.length >= 8) {
+      return;
+    }
+
     if (e) {
       console.log("file", e[0]);
 
@@ -33,6 +29,17 @@ export default function FileDrawer({ files, setFiles }: any) {
       reader.readAsArrayBuffer(e[0]);
     }
   };
+
+  const color = [
+    "orange",
+    "blue",
+    "red",
+    "green",
+    "purple",
+    "pink",
+    "cyan",
+    "teal",
+  ];
 
   return (
     <motion.div
@@ -90,7 +97,7 @@ export default function FileDrawer({ files, setFiles }: any) {
           />
         </Flex>
         {files.map((file: any, index: any) => {
-          return <File key={index} color={"orange"} audio={file} />;
+          return <File key={index} color={color[index]} audio={file} />;
         })}
         {/* <File
           title={"The Voice of the best ever in the world, okas"}
