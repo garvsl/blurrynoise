@@ -24,23 +24,24 @@ export default function FileDrawer({ files, setFiles }: any) {
   ];
 
   const handleUpload = (e: any) => {
+    const file = e[0];
+
     if (files.length >= 8) {
       return;
     }
 
     if (e) {
-      console.log("file", e[0]);
-
-      let reader = new FileReader();
+      let reader: any = new FileReader();
       reader.onload = function (evt: any) {
         //Need to make a blob so the audio file is recognized by waveSurfer
         let blob = new window.Blob([new Uint8Array(evt.target.result)]);
         setFiles([
           ...files,
-          { name: e[0].name, blob: blob, color: color[files.length] },
+          { name: file.name, blob: blob, color: color[files.length] },
         ]);
       };
-      reader.readAsArrayBuffer(e[0]);
+      reader.readAsArrayBuffer(file);
+      inputRef.current.value = [];
     }
   };
 
@@ -92,7 +93,9 @@ export default function FileDrawer({ files, setFiles }: any) {
             accept="audio/*"
             multiple={false}
             display={"none"}
-            onChange={(e) => handleUpload(e.target.files)}
+            onChange={(e: any) => {
+              handleUpload(e.target.files);
+            }}
             ref={inputRef}
             size={"sm"}
             variant={"unstyled"}

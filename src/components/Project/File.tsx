@@ -15,12 +15,9 @@ import Wave from "./Wave";
 
 export default function File({ audio }: any) {
   const [loading, setLoading] = useState(true);
-
   const cardRef: any = useRef();
-
   const [duration, setDuration] = useState<any>("0:00");
   const [currentTime, setCurrentTime] = useState<any>("0:00");
-  const [playing, setPlaying] = useState(false);
 
   return (
     <>
