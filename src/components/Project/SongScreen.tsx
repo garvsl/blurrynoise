@@ -1,12 +1,15 @@
 import { Card, Flex, Grid, GridItem } from "@chakra-ui/react";
 import { useProject } from "../../hooks/ProjectProvider";
 import Marker from "./Marker";
-import { createRef, useLayoutEffect, useRef } from "react";
+import { createRef, useEffect, useLayoutEffect, useRef } from "react";
+import WaveSurfer from "wavesurfer.js";
 
-const Song = () => {
+const Song = ({ audio }: any) => {
+  const cardRef: any = useRef();
   return (
     <Card
-      bg={"blackAlpha.100"}
+      ref={cardRef}
+      bg={`${audio ? audio.color : "blackAlpha"}.100`}
       variant={"outline"}
       padding={"16px"}
       size={"md"}
@@ -14,8 +17,8 @@ const Song = () => {
   );
 };
 
-export default function SongScreen() {
-  const { isOpen, changed } = useProject();
+export default function SongScreen({ files }: any) {
+  const { isOpen, changed, projects } = useProject();
   let gridRef: any = useRef();
   let gridClient = gridRef?.current?.getBoundingClientRect();
 
@@ -37,14 +40,12 @@ export default function SongScreen() {
       overflow={"hidden"}
     >
       <Marker gridRef={gridRef} gridClient={gridClient} isChanged={changed} />
-      <Song />
-      <Song />
-      <Song />
-      <Song />
-      <Song />
-      <Song />
-      <Song />
-      <Song />
+      {files.map((file: any, index: any) => {
+        return <Song key={index} audio={file} />;
+      })}
+      {[...Array(8 - files.length)].map((e, i) => {
+        return <Song key={i} />;
+      })}
     </Grid>
   );
 }

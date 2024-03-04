@@ -26,8 +26,6 @@ export default function ProjectProvider({ children }: any) {
   const [duration, setDuration] = useState<any>(0);
   const [curent, setCurrent] = useState<any>(0);
 
-  console.log(projects);
-
   return (
     <ProjectContext.Provider
       value={{
