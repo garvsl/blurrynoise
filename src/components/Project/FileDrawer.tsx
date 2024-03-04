@@ -23,7 +23,14 @@ export default function FileDrawer({ files, setFiles }: any) {
   const handleUpload = (e: any) => {
     if (e) {
       console.log("file", e[0]);
-      setFiles([...files, e[0]]);
+
+      let reader = new FileReader();
+      reader.onload = function (evt: any) {
+        //Need to make a blob so the audio file is recognized by waveSurfer
+        let blob = new window.Blob([new Uint8Array(evt.target.result)]);
+        setFiles([...files, { name: e[0].name, blob: blob }]);
+      };
+      reader.readAsArrayBuffer(e[0]);
     }
   };
 
@@ -83,15 +90,7 @@ export default function FileDrawer({ files, setFiles }: any) {
           />
         </Flex>
         {files.map((file: any, index: any) => {
-          return (
-            <File
-              key={index}
-              title={file.name}
-              length={"3:00"}
-              color={"orange"}
-              audio={file}
-            />
-          );
+          return <File key={index} color={"orange"} audio={file} />;
         })}
         {/* <File
           title={"The Voice of the best ever in the world, okas"}

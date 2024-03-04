@@ -10,12 +10,13 @@ import {
 import { useEffect, useRef, useState } from "react";
 import WaveSurfer from "wavesurfer.js";
 
-export default function File({ title, length, color, audio }: any) {
+export default function File({ color, audio }: any) {
   const [loading, setLoading] = useState(true);
   const waveSurferRef: any = useRef();
   const cardRef: any = useRef();
+  const effectCalled = useRef(false);
+  const [duration, setDuration] = useState<any>(0);
 
-  console.log(cardRef.current);
   const waveSurfer: any = (ref: any) => ({
     container: ref,
     waveColor: "#fff",
@@ -29,50 +30,54 @@ export default function File({ title, length, color, audio }: any) {
   });
 
   useEffect(() => {
+    if (effectCalled.current) return;
     if (audio) {
-      var reader = new FileReader();
+      const options = waveSurfer(cardRef.current);
+      waveSurferRef.current = WaveSurfer.create(options);
+      waveSurferRef.current.loadBlob(audio.blob);
 
-      reader.onload = function (evt: any) {
-        console.log(evt);
-
-        //Need to make a blob so the audio file is recognized by waveSurfer
-        var blob = new window.Blob([new Uint8Array(evt.target.result)]);
-        const options = waveSurfer(cardRef.current);
-
-        waveSurferRef.current = WaveSurfer.create(options);
-        waveSurferRef.current.loadBlob(blob);
-        setLoading(false);
-      };
-      reader.readAsArrayBuffer(audio);
+      waveSurferRef.current.on("ready", () => {
+        setDuration(`${Math.round(waveSurferRef.current.getDuration())}s`);
+      });
+      setLoading(false);
+      effectCalled.current = true;
     }
   }, [audio]);
 
   return (
-    <Skeleton isLoaded={!loading}>
-      <Card ref={cardRef} bg={`${color}.300`} size={"sm"}>
-        <CardHeader>
-          <Flex alignItems={"flex-end"}>
-            <Text
-              color={"white"}
-              fontSize={"14px"}
-              letterSpacing={"-0.5px"}
-              isTruncated={true}
-              fontWeight={"500px"}
-            >
-              {title}
-            </Text>
-            <Spacer />
-            <Text
-              paddingLeft={"10px"}
-              fontSize={"14px"}
-              letterSpacing={"-0.5px"}
-              color={"gray.200"}
-            >
-              {length}
-            </Text>
-          </Flex>
-        </CardHeader>
-      </Card>
-    </Skeleton>
+    // <Skeleton isLoaded={!loading}>
+    <Card
+      paddingBottom={"5px"}
+      padding={"5px"}
+      ref={cardRef}
+      bg={`${color}.300`}
+      size={"sm"}
+    >
+      <CardHeader>
+        <Flex alignItems={"flex-end"}>
+          <Text
+            color={"white"}
+            fontSize={"14px"}
+            marginLeft={"-5px"}
+            paddingRight={"15px"}
+            letterSpacing={"-0.5px"}
+            isTruncated={true}
+            fontWeight={"500px"}
+          >
+            {audio.name}
+          </Text>
+          <Spacer />
+          <Text
+            paddingLeft={"15x"}
+            fontSize={"14px"}
+            letterSpacing={"-0.5px"}
+            color={"gray.200"}
+          >
+            {duration}
+          </Text>
+        </Flex>
+      </CardHeader>
+    </Card>
+    // </Skeleton>
   );
 }
