@@ -1,19 +1,47 @@
 import { Card, Flex, Grid, GridItem } from "@chakra-ui/react";
 import { useProject } from "../../hooks/ProjectProvider";
 import Marker from "./Marker";
-import { createRef, useEffect, useLayoutEffect, useRef } from "react";
+import { createRef, useEffect, useLayoutEffect, useRef, useState } from "react";
 import WaveSurfer from "wavesurfer.js";
+import Wave from "./Wave";
 
 const Song = ({ audio }: any) => {
+  const [loading, setLoading] = useState(true);
   const cardRef: any = useRef();
+  const [duration, setDuration] = useState<any>("0:00");
+  const [currentTime, setCurrentTime] = useState<any>("0:00");
   return (
-    <Card
-      ref={cardRef}
-      bg={`${audio ? audio.color : "blackAlpha"}.100`}
-      variant={"outline"}
-      padding={"16px"}
-      size={"md"}
-    ></Card>
+    <>
+      {audio ? (
+        <Wave
+          height={50}
+          cardRef={cardRef}
+          audio={audio}
+          setDuration={setDuration}
+          setCurrentTime={setCurrentTime}
+          setLoading={setLoading}
+        >
+          <Card
+            display={"flex"}
+            justifyContent={"center"}
+            h={"100%"}
+            ref={cardRef}
+            bg={`${audio ? audio.color : "blackAlpha"}.100`}
+            variant={"outline"}
+            padding={"16px"}
+            size={"md"}
+          ></Card>
+        </Wave>
+      ) : (
+        <Card
+          ref={cardRef}
+          bg={`${audio ? audio.color : "blackAlpha"}.100`}
+          variant={"outline"}
+          padding={"16px"}
+          size={"md"}
+        ></Card>
+      )}
+    </>
   );
 };
 
