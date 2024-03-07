@@ -24,7 +24,7 @@ export default function ProjectProvider({ children }: any) {
   const [changed, setChanged] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [duration, setDuration] = useState<any>(0);
-  const [curent, setCurrent] = useState<any>(0);
+  const [current, setCurrent] = useState<any>(0);
 
   return (
     <ProjectContext.Provider
@@ -42,7 +42,7 @@ export default function ProjectProvider({ children }: any) {
         setPlaying,
         duration,
         setDuration,
-        curent,
+        current,
         setCurrent,
         files,
         setFiles,
