@@ -126,13 +126,13 @@ export default function SongScreen({ files }: any) {
       position={"relative"}
       overflow={"hidden"}
     >
-      {/* <Marker gridRef={gridRef} gridClient={gridClient} isChanged={changed} />
+      <Marker gridRef={gridRef} gridClient={gridClient} isChanged={changed} />
       {files.map((file: any, index: any) => {
         return <Song key={index} audio={file} />;
       })}
       {[...Array(8 - files.length)].map((e, i) => {
         return <Song key={i} />;
-      })} */}
+      })}
     </Grid>
   );
 }
